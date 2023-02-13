@@ -6,10 +6,13 @@ import "./index.css";
 import "./bootstrap.min.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { Suspense } from "react";
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Suspense fallback={"loading"} >
+      <App />
+    </Suspense>
   </Provider>,
   document.getElementById("root")
 );

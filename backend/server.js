@@ -9,6 +9,7 @@ import xss from "xss-clean";
 import rateLimit from "express-rate-limit";
 import hpp from "hpp";
 import cors from "cors";
+import localization from "./middleware/localization.js"
 import connectDB from "./config/db.js";
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 
@@ -31,6 +32,9 @@ app.use(express.json());
 
 // Nested objects
 app.use(express.urlencoded({ extended: true }));
+
+// Multil-language
+app.use(localization)
 
 // Cookie parser
 app.use(cookieParser());
@@ -69,6 +73,7 @@ app.get("/api/config/paypal", (req, res) =>
 
 const __dirname = path.resolve();
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
+app.use("/locals", express.static(path.join(__dirname, "/backend/locals")))
 
 // Error Handling Middlewares
 app.use(notFound);

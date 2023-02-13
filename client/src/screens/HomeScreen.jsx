@@ -9,8 +9,10 @@ import { listProducts } from "../actions/productActions";
 import Paginate from "../components/Paginate";
 import ProductCarousel from "../components/ProductCarousel";
 import Meta from "../components/Meta";
+import { useTranslation } from "react-i18next"
 
 const HomeScreen = () => {
+  const { t } = useTranslation()
   const { keyword, pageNumber } = useParams();
   const dispatch = useDispatch();
 
@@ -31,7 +33,8 @@ const HomeScreen = () => {
           Go Back
         </Link>
       )}
-      <h1>Latest Products</h1>
+      <h1>{t("appName-slogan")}</h1>
+      <h1>{t("emails:thanks-for", { key: t("apllying") })}</h1>
       {loading ? (
         <Loader />
       ) : error ? (

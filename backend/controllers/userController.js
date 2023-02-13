@@ -9,6 +9,10 @@ const authUser = asyncHandler(async (req, res) => {
 
   const user = await User.findOne({ email });
 
+  console.log(req.t("thanks-for", { ns: "emails", key: "subscribing" }));
+  console.log(req.t("general:appName"));
+  console.log(req.t("emails:verify-email"));
+
   if (user && (await user.matchPassword(password))) {
     res.json({
       _id: user._id,
